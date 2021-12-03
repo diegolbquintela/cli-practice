@@ -31,6 +31,21 @@ const targetCurrency = process.argv[4];
 // If any of the required information is missing, display a meaningful message
 // and exit the program.
 
+if (amount === undefined || amount < 0) {
+  console.error("Error. The amount should have a positive value");
+  process.exit();
+}
+
+if (baseCurrency === undefined) {
+  console.error("Please, provide a base currency");
+  process.exit();
+}
+
+if (targetCurrency === undefined) {
+  console.error("Please, provide a target currency");
+  process.exit();
+}
+
 // --------------------------------------------------
 // Step 3: Define currency conversion rates
 // --------------------------------------------------
