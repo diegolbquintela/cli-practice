@@ -59,8 +59,8 @@ if (targetCurrency === undefined) {
 // up-to-date rate information: https://www.xe.com/
 
 let currencies = {
-  CAD: 1,
-  USD: 1.2831,
+  USD: 1,
+  CAD: 1.2831,
   supportedCurrencies: ["USD", "CAD"],
 };
 
@@ -93,6 +93,14 @@ if (currencies.supportedCurrencies.includes(targetCurrency) === false) {
 // At this point we've confirmed that the user has supplied all of the necessary
 // information, and that a rate exists for each of the currencies.
 
+let convertedAmount;
+
+if (baseCurrency === "USD" && targetCurrency === "CAD") {
+  convertedAmount = amount * currencies.CAD;
+} else if (baseCurrency === "CAD" && targetCurrency === "USD") {
+  convertedAmount = amount / currencies.CAD;
+}
+
 // Now we will compute the rate, apply it to the amount, and capture the result.
 
 // --------------------------------------------------
@@ -102,3 +110,5 @@ if (currencies.supportedCurrencies.includes(targetCurrency) === false) {
 
 // This message should also include the original amount and currency information
 // supplied by the user.
+
+console.log(`${amount} ${baseCurrency} = ${convertedAmount} ${targetCurrency}`);
