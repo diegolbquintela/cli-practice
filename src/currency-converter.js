@@ -59,8 +59,8 @@ if (targetCurrency === undefined) {
 // up-to-date rate information: https://www.xe.com/
 
 let currencies = {
-  USD: 1,
-  CAD: 1.2831,
+  CADUSD: 0.7787,
+  USDCAD: 1.2831,
   supportedCurrencies: ["USD", "CAD"],
 };
 
@@ -94,12 +94,17 @@ if (currencies.supportedCurrencies.includes(targetCurrency) === false) {
 // information, and that a rate exists for each of the currencies.
 
 let convertedAmount;
+const userCurrency = [baseCurrency, targetCurrency];
 
-if (baseCurrency === "USD" && targetCurrency === "CAD") {
-  convertedAmount = amount * currencies.CAD;
-} else if (baseCurrency === "CAD" && targetCurrency === "USD") {
-  convertedAmount = amount / currencies.CAD;
-}
+// step 1: sum strings baseCurrency + targetCurrency
+let forexRatio = baseCurrency + targetCurrency;
+// console.log(forexRatio);
+
+// step 2: filter currency
+// console.log(currencies[forexRatio]);
+
+// step 3 convert
+convertedAmount = (currencies[forexRatio] * amount).toFixed(2);
 
 // Now we will compute the rate, apply it to the amount, and capture the result.
 
